@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     # third-party apps
     'rest_framework',
     'rest_framework_swagger',
+    'corsheaders',
 
     # own apps
     'accounts'
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -146,6 +149,16 @@ MAILGUN_API_KEY = os.environ.get('MAILGUN_API_KEY', '')
 MAILGUN_DEFAULT_SENDER_EMAIL = os.environ.get('MAILGUN_DEFAULT_SENDER_EMAIL', '')
 
 MAILGUN_API_BASE_URL = os.environ.get('MAILGUN_API_BASE_URL', '')
+
+# JWT settings
+
+JWT_AUTH = {
+    'JWT_VERIFY': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
+}
+
+# CORS settings
+CORS_ORIGIN_ALLOW_ALL = True
 
 try:
     from .local_settings import *

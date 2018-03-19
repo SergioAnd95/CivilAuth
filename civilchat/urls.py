@@ -23,7 +23,7 @@ from rest_framework_swagger.views import get_swagger_view
 from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPIRenderer
 
 schema_view = get_schema_view(
-    title='CivilChat accounts API', 
+    title='CivilChat API',
     renderer_classes=[OpenAPIRenderer, SwaggerUIRenderer]
 )
 
